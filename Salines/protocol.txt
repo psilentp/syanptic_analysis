@@ -1,0 +1,66 @@
+================================================
+recipe for 2L of external
+ext.tets.highCa
+For 2.0 L of saline---:
+Reagent   Concentration           Stock             Mass    
+--------  -------------      -------------        --------
+CaCl2:	       0.008 M        16.0 mL  (1.0M)       1.7757 g
+KCl:	       0.005 M        10.0 mL  (1.0M)       0.7455 g
+HEPES:	        0.01 M        20.0 mL  (1.0M)       4.7660 g
+NaCl:	       0.143 M       143.0 mL  (2.0M)      16.7138 g
+Glucose:	        0.03 M        60.0 mL  (1.0M)      10.8096 g
+
+ion concentrations:
+-------------------------------------------
+Cl-:0.164 M 
+HEPES:0.01 M 
+K+:0.005 M 
+Na+:0.143 M 
+Ca++:0.008 M 
+Glucose:0.03 M 
+calculated osmolality:0.36 M
+
+pH to 7.2 with NaOH
+================================================
+
+
+recipe for 500mL of internal sol
+internal.bufCa.mod2
+For 0.5 L of saline---:
+Reagent   Concentration           Stock             Mass    
+--------  -------------      -------------        --------
+CaCl2:	       0.001 M         0.5 mL  (1.0M)       0.0555 g
+EGTA:	        0.01 M         5.0 mL  (1.0M)       1.9018 g
+HEPES:	        0.01 M         5.0 mL  (1.0M)       1.1915 g
+KCl:	       0.018 M         9.0 mL  (1.0M)       0.6709 g
+Kgluc:	       0.125 M        62.5 mL  (1.0M)      14.6406 g
+NaCl:	       0.004 M         1.0 mL  (2.0M)       0.1169 g
+MgCl2:	       0.001 M         0.5 mL  (1.0M)       0.0476 g
+
+ion concentrations:
+-------------------------------------------
+Cl-:0.026 M 
+gluc-:0.125 M 
+HEPES:0.01 M 
+EGTA:0.01 M 
+K+:0.143 M 
+Na+:0.004 M 
+Mg++:0.001 M 
+Ca++:0.001 M 
+calculated osmolality:0.32 M
+
+pH to 7.2 with KOH
+================================================
+
+
+Nerst potentials for the two sol:
+------------------------
+Cl- : -47.3198681972 mV
+gluc- : not in both sol
+Ca++ : 26.713136158 mV
+HEPES : free acid or not charged
+EGTA : not in both sol
+K+ : -86.1577576969 mV
+Na+ : 91.8908970515 mV
+Mg++ : not in both sol
+Glucose : not in both sol

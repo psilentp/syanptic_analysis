@@ -1,0 +1,39 @@
+#!/usr/bin/python
+
+#  example run
+#  
+#
+#  Created by Theodore Lindsay on 10/2/09.
+#  Copyright (c) 2009 University of Oregon. All rights reserved.
+
+from salines import *
+import quantities as pq
+
+def test():
+
+    print('================================================')
+    external_sol = ext.tets.highCa
+    external_sol.volume = pq.Quantity(2.0,'L')
+    print "recipe for 2L of external"
+    print(str(external_sol))
+    print('pH to 7.2 with NaOH') 
+    print('================================================\n\n')
+    
+
+    internal_sol = internal.buffCa.mod2
+    internal_sol.volume = pq.Quantity(0.5,'L')
+    print"recipe for 500mL of internal sol"
+    print(str(internal_sol))
+    print('pH to 7.2 with KOH')
+    print('================================================')
+
+
+    print "\n\nNerst potentials for the two sol:"
+    print "------------------------"
+    import sollib
+    nersts = sollib.saline_nersts(external_sol,internal_sol,temp = pq.Quantity(25.0,'degC'))
+    for ion in nersts.keys():
+        print "%s : %s"%(ion,nersts[ion])
+    
+if __name__ == '__main__':
+    test()
