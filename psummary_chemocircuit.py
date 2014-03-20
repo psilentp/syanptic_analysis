@@ -436,8 +436,19 @@ def run_calc():
 
 def comp_syn_to_zero(cennum):
     from scipy import stats
+    prior_Vo = -30
+    prior_Vs = -60
+    
+    include_Vo = lambda v: (v < (prior_Vo + 30)) and (v > (prior_Vo - 50))
+    include_Vs = lambda v: (v < (prior_Vs + 30)) and (v > (prior_Vs - 50))
+    
     current_list_zero = calc_zero_current_hold(cennum)
+    current_list_zero = [(x[0],x[1]) for x in current_list_zero if include_Vo(x[0])]
+    #print current_list_zero
     current_list_syn = calc_synaptic_currents(cennum)
+    current_list_syn = [(x[0],x[1]) for x in current_list_syn if include_Vs(x[0])]
+    #print current_list_syn
+    #print cennum
     syn_xs = [x[0] for x in current_list_syn]
     syn_ys = [x[1] for x in current_list_syn]
     zer_xs = [x[0] for x in current_list_zero]
@@ -447,7 +458,6 @@ def comp_syn_to_zero(cennum):
     slope,intercept,r_value,p_value,std_err = stats.linregress(syn_xs,syn_ys)
     rpot_syn = (-1*intercept/slope)
     return (zer_cur_pot,rpot_syn,p_value)
-    0
     
 def calc_zero_current_hold(cennum):
     """calculate the reversal potential using an ohmic model, save a summary figure
@@ -494,7 +504,6 @@ def calc_synaptic_currents(cennum):
     vh = [v-15.0 for v in vh]
     for i,trace in enumerate(traces):
         epoch = trace.ts(725.0,975.0,tunits = 'ms')
-        #swp = trace.ts(600.0,1550.0,tunits = 'ms')
         epoch = epoch.sub_baseline(0,100,tunits = 'ms')
         chtr = epoch.integrate(100,200,tunits = 'ms')
         chtr = chtr/quan.Quantity(100,'ms')
@@ -507,17 +516,6 @@ def calc_synaptic_currents(cennum):
         #current_list.append(epoch)
         num_trials = len(current_list)/11
     return current_list
-    
-    #num_trials = len(current_list)/11
-    #f = plb.figure(figsize=[12,8])
-    ###scatter plot
-    #a1 = make_axes(0.55,0.9,0.1,0.5)
-    #colors = ['Green','Maroon','Olive','Teal','Purple','SaddleBrown','DarkSeaGreen','AquaMarine','DarkOrchid','RosyBrown','RoyalBlue','Chocolate','LightSlateGray','YellowGreen','SteelBlue']
-    #for n in range(num_trials):
-    #    #print n
-    #   c = colors[n]
-    #    #print c
-    #    [plb.plot(i[0],i[1],'o',color = c) for i in current_list[(n)*len(current_list)/num_trials:(n+1)*len(current_list)/num_trials]]
         
         
     
